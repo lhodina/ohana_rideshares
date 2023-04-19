@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Ohana Rideshares Dashboard</title>
+</head>
+<body>
+    <div class="messages-container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="message">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="dashboard-container">
+        <div class="header">
+            <span class="welcome-message">Welcome, {{ session['current_user']['first_name'] }}</span>
+            <div class="header-links">
+                <a href="/rides/request">+ Request a Ride</a>
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+        <div class="rideshares-container">
+            <div class="rideshares-container-left">
+                <h2>Rideshare Requests</h2>
+                {% for request in all_requests %}
+                    <div class="table rideshare-request">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Rider:</th>
+                                    {% if session["current_user"] and session["current_user"]["id"] == request.passenger.id %}
+                                        <td>YOU</td>
+                                    {% else %}
+                                        <td>{{ request.passenger.first_name }} {{ request.passenger.last_name }}</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th>Destination:</th>
+                                    <td>{{ request.destination }}</td>
+                                </tr>
+                                <tr>
+                                    <th>When needed:</th>
+                                    <td>{{ request.ride_date.strftime("%B %d") }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {% if session["current_user"] and session["current_user"]["id"] == request.passenger.id %}
+                            <a href="/requests/{{ request.id }}/delete">DELETE</a>
+                        {% else %}
+                            <a href="/requests/{{ request.id }}/accept">I can drive</a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="rideshares-container-right">
+                <h2>Booked Rideshares</h2>
+                {% for booking in all_booked_rides %}
+                    <div class="booked-rideshare">
+                        {% if session["current_user"] and session["current_user"]["id"] == booking.driver.id %}
+                            <p>YOU are driving {{ booking.passenger.first_name }} {{ booking.passenger.last_name }} to {{ booking.destination }} on {{ booking.ride_date.strftime("%B %d") }}</p>
+                            <a href="/rides/{{ booking.id }}">Details</a> | <a href="/rides/{{ booking.id}}/cancel">Cancel</a>
+                        {% elif session["current_user"] and session["current_user"]["id"] == booking.passenger.id %}
+                            <p>YOU are riding with {{ booking.driver.first_name }} {{ booking.driver.last_name }} to {{ booking.destination }} on {{ booking.ride_date.strftime("%B %d") }}</p>
+                            <a href="/rides/{{ booking.id }}">Details</a>
+                        {% else %}
+                            <p>{{ booking.driver.first_name }} {{ booking.driver.last_name }} is driving {{ booking.passenger.first_name }} {{ booking.passenger.last_name }} to {{ booking.destination }} on {{ booking.ride_date.strftime("%B %d") }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

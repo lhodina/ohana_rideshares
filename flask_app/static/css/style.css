@@ -1,0 +1,104 @@
+.outer-container {
+    display: flex;
+    width: 75%;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+
+.container {
+    width: 30%;
+    margin: 20px auto;
+}
+
+
+.header, .edit-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.messages-container {
+    position: absolute;
+}
+
+
+.message {
+    color: red;
+    margin: 20px;
+}
+
+
+.welcome-message {
+    font-size: 2rem;
+    color: rgb(238, 172, 51);
+}
+
+
+.header-links a {
+    margin: 0 10px;
+}
+
+
+h1 {
+    padding: 20px;
+    color: rgb(65, 195, 255);
+}
+
+.form-container {
+    width: 50%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.split-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.form-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.name-input {
+    width: 244px;
+}
+
+.form-group {
+    margin: 5px;
+}
+
+.dashboard-container {
+    width: 65%;
+    margin: 0 auto;
+}
+
+.rideshares-container {
+    display: flex;
+    justify-content: center;
+}
+
+.rideshares-container-left, .rideshares-container-right {
+    margin: 10px;
+}
+
+.rideshare-request, .booked-rideshare {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px
+}
+
+.ride-container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+

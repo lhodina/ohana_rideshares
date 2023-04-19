@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Ohana Rideshares Booking</title>
+</head>
+<body>
+    <div class="ride-container">
+        <div class="header">
+            <div class="header-links">
+                <a href="/dashboard">Home</a>
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+        <h1>Ready for your trip to {{ ride.destination }}?</h1>
+        <div class="table rideshare-request">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Who's driving?</th>
+                        {% if session["current_user"] and session["current_user"]["id"] == ride.driver.id %}
+                            <td>YOU</td>
+                        {% else %}
+                            <td>{{ ride.driver.first_name }} {{ ride.driver.last_name }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th>Who's coming along?</th>
+                        {% if session["current_user"] and session["current_user"]["id"] == ride.passenger.id %}
+                            <td>YOU</td>
+                        {% else %}
+                            <td>{{ ride.passenger.first_name }} {{ ride.passenger.last_name }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th>Date:</th>
+                        <td>{{ ride.ride_date.strftime("%B %d") }}</td>
+                    </tr>
+                    <tr>
+                        <th>Pickup Location:</th>
+                        <td>{{ ride.pickup_location }}</td>
+                    </tr>
+                    <tr>
+                        <th>Details:</th>
+                        <td>{{ ride.details }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="/rides/edit/{{ ride.id }}">Edit</a> |
+            <a href="/rides/delete/{{ ride.id }}">DELETE</a>
+        </div>
+    </div>
+    <div class="ride-messages-container">
+        <h2>Ride Messages</h2>
+        <div class="table">
+            <table>
+                <tbody>
+                    {% for ride_message in ride_messages %}
+                        <tr>
+                            <th>{{ ride_message.sender.first_name }}</th>
+                            <td>{{ ride_message.content }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <form action="/send_message" method="post">
+            <input type="hidden" name="ride_id" value="{{ ride.id }}">
+            <input type="hidden" name="user_id" value="{{ session.current_user.id }}">
+            <textarea name="content" cols="40" rows="10"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Request Rideshare</title>
+</head>
+<body>
+    <div class="messages-container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="message">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="form-container">
+        <div class="header">
+            <h1>Request Ride</h1>
+            <div class="header-links">
+                <a href="/dashboard">Back to Dashboard</a>
+                <a href="/logout">Log Out</a>
+            </div>
+        </div>
+        <form action="/request_ride" method="post">
+            <input type="hidden" name="passenger_id" value="{{ session['current_user']['id'] }}">
+            <div class="form-group">
+                <label for="destination">Destination:</label>
+                <input type="text" name="destination">
+                {#
+                {% if (session["data"]) and (session["data"]["destination"]) %}
+                    <input type="text" name="destination" value="{{ session['data']['destination']}}">
+                {% else %}
+                    <input type="text" name="destination">
+                {% endif %}
+                #}
+            </div>
+            <div class="form-group">
+                <label for="pickup_location">Pickup Location:</label>
+                <input type="text" name="pickup_location">
+                {#
+                {% if (session["data"]) and (session["data"]["pickup_location"]) %}
+                    <input type="text" name="pickup_location" value="{{ session['data']['pickup_location'] }}">
+                {% else %}
+                    <input type="text" name="pickup_location">
+                {% endif %}
+                #}
+            </div>
+            <div class="form-group">
+                <label for="ride_date">Ride Date:</label>
+                <input type="date" name="ride_date">
+                {#
+                {% if (session["data"]) and (session["data"]["ride_date"]) %}
+                    <input type="date" name="ride_date" value="{{ session['data']['ride_date'] }}">
+                {% else %}
+                    <input type="date" name="ride_date">
+                {% endif %}
+                #}
+            </div>
+            <div class="form-group">
+                <label for="details">Details:</label>
+                <textarea name="details" cols="30" rows="10"></textarea>
+                {#
+                {% if (session["data"]) and (session["data"]["details"]) %}
+                    <textarea name="details" cols="30" rows="10" value="{{ session['data']['details'] }}"></textarea>
+                {% else %}
+                    <textarea name="details" cols="30" rows="10"></textarea>
+                {% endif %}
+                #}
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
