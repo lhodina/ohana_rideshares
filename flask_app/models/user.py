@@ -68,7 +68,7 @@ class User:
             flash("Email required")
             is_valid = False
         elif not EMAIL_REGEX.match(user["email"]):
-            flash("Invalid email address")
+            flash("Email must be in the following format: beeblebrox@galaxy.gov")
             is_valid = False
         query = "SELECT * FROM users WHERE email = %(email)s;"
         data = {"email": user["email"]}
@@ -82,7 +82,7 @@ class User:
             flash("Passwords do not match")
             is_valid = False
         elif not PASSWORD_REGEX.match(user["password"]):
-            flash("Invalid password")
+            flash("Password must include at least one capital letter and one number")
             is_valid = False
         return is_valid
 
@@ -94,7 +94,7 @@ class User:
             flash("Email Required")
             is_valid = False
         elif not EMAIL_REGEX.match(data["email"]):
-            flash("Invalid email format")
+            flash("Email must be in the following format: beeblebrox@galaxy.gov")
             is_valid = False
         else:
             query = "SELECT * FROM users WHERE email = %(email)s;"
@@ -106,7 +106,7 @@ class User:
             else:
                 current_user = result[0]
             if current_user and not bcrypt.check_password_hash(current_user["password"], data["password"]):
-                flash("Invalid password")
+                flash("Incorrect password")
                 is_valid = False
         if not data["password"]:
             flash("Password required")

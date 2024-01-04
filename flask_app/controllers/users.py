@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, session, flash
+from flask import render_template, redirect, request, session
 from flask_bcrypt import Bcrypt
 
 from flask_app import app
