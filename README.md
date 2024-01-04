@@ -22,3 +22,8 @@ This was an unguided Coding Dojo project where I built out a wireframe to create
 
 ## Screenshots and Wireframe
 ![Alt text](/flask_app/static/images/ohana_rideshares_wireframe.png?raw=true "Optional Title")
+![Alt text](/flask_app/static/images/Screenshot 2024-01-04 114726.png?raw=true "Optional Title")
+![Alt text](/flask_app/static/images/Screenshot 2024-01-04 114829.png?raw=true "Optional Title")
+![Alt text](/flask_app/static/images/Screenshot 2024-01-04 115100.png?raw=true "Optional Title")
+![Alt text](/flask_app/static/images/Screenshot 2024-01-04 115242.png?raw=true "Optional Title")
+
