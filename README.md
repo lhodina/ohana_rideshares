@@ -21,4 +21,4 @@ This was an unguided Coding Dojo project where I built out a wireframe to create
 - Form validations for destination, pickup location, and details
 
 ## Screenshots and Wireframe
-![Alt text](flask_app\static\images\ohana_rideshares_wireframe.png?raw=true "Optional Title")
+![Alt text](/flask_app/static/images/ohana_rideshares_wireframe.png?raw=true "Optional Title")
