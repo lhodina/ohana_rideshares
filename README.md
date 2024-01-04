@@ -19,3 +19,15 @@ This was an unguided Coding Dojo project where I built out a wireframe to create
 - Both passenger and driver can post messages
 - Ride messages displayed on details page as dialogue between user and driver
 - Form validations for destination, pickup location, and details
+
+## Screenshots and Wireframe
+![Alt text](/flask_app/static/images/ohana_rideshares_wireframe.png?raw=true "Wireframe")
+
+![Alt text](/flask_app/static/images/Screenshot 2024-01-04 114726.png?raw=true "Login")
+
+![Alt text](/flask_app/static/images/Screenshot 2024-01-04 114829.png?raw=true "Dashboard")
+
+![Alt text](/flask_app/static/images/Screenshot 2024-01-04 115100.png?raw=true "Messages")
+
+![Alt text](/flask_app/static/images/Screenshot 2024-01-04 115242.png?raw=true "Request Ride")
+
